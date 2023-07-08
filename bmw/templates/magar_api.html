@@ -1,0 +1,34 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">       
+        <div class="col-md-12 mt-5 mb-3">
+            <h1><a href=""><center>News List</center></a></h1>
+        </div>
+        <div class="row">
+            {% for magar in magarData%}    
+                <div class="col-md-4">
+                    <div class="card">
+                        {% if magar.urlToImage %}
+                        <img src="{{ magar.urlToImage.url }}" class="" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ magar.title }}</h5>
+                            <p class="card-text">{{ magar.content | safe }}</p>
+                        </div>
+                    </div>
+                </div> 
+            {% empty %}
+            No Data Found         
+            {% endfor %}    
+                    
+        </div>       
+    </div>
+          
+</div>
+{% endblock %}
+
+
+

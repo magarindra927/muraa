@@ -1,0 +1,58 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-8 mt-5 mb-5">
+            <h1><a href="">{{ magarData.title }}</a></h1>
+            {% if magarData.photo %}
+            <img src="{{ magarData.photo.url }}" class="img-fluid" alt="...">
+            {% endif %}
+            <p class="card-text">{{ magarData.content | safe }}</p>                
+        </div>
+        
+        <div class="col-md-4">
+            <h1>Read More</h1>
+            <ul>
+                {% for rmagar in related_magar %}
+                <li><a href="{% url 'magar_details' rmagar.slug %}">{{ rmagar.title }}</a></li>
+                {% endfor %}
+            </ul>
+            
+        </div>
+        <div class="row">
+            <div id="fb-root"></div>
+            <div class="fb-comments" data-href="http://127.0.0.1:8000/magar" data-width="" data-numposts=""></div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+<div class="container mt-5 mb-5">
+    <div class="row">       
+        <div class="col-md-8">
+            <h1><a href="">{{ familyData.title }}</a></h1>                    
+            {% if familyData.photo %}
+            <img src="{{ familyData.photo.url }}" class="img-fluid card-img-top" height="50" alt="image not found">
+            {% endif %}                            
+            <p>{{ familyData.description | safe }}</p>
+            
+        </div>
+        <div class="col-md-4">
+        <h1>Related Family</h1>
+            <ul>
+                {% for rFamily in related_family %}
+                <li><a href="{% url 'family_details' rFamily.slug %}">{{ rFamily.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="row">
+            <div id="fb-root"></div>
+            <div class="fb-comments" data-href="http://127.0.0.1:8000/family/{{ rfamily.slug }}" data-width="10" data-numposts="10"></div>
+            
+    </div>
+</div>
+

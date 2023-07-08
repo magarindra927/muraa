@@ -1,0 +1,22 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+
+<div c<lass="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-8 mt-5 mb-5">
+            <h1>{{ copData.title }}</h1>
+            <p>{{ copData.content | safe }}
+        </div>
+        <div class="col-md-4 mb-5 mt-5">
+            {% if copData.photo.url %}
+            <img src="{{ copData.photo.url }}" class="img-fluid" alt="Image Not Found">
+            {% endif %}
+        </div>
+    </div>
+</div>
+             
+
+
+{% endblock %}
+
+   

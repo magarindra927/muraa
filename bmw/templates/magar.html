@@ -1,0 +1,56 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">       
+        <div class="col-md-12 mt-5 mb-3">
+            <h1><a href=""><center>News List</center></a></h1>
+        </div>
+        <div class="row">
+            {% for magar in magarData%}    
+                <div class="col-md-4">
+                    <div class="card">
+                        {% if magar.photo %}
+                        <img src="{{ magar.photo.url }}" class="img-fluid" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ magar.title }}</h5>
+                            <p class="card-text">{{ magar.summary | safe }}</p>
+                            <a href="{% url 'magar_details' magar.slug %}" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div> 
+            {% empty %}
+            No Data Found         
+            {% endfor %}    
+                    
+        </div>       
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination mt-5 mb-5">
+            {% if magarData.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ magarData.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+            {% for i in magarData.paginator.page_range %}
+                {% if magarData.number == i %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% else %}    
+
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if magarData.has_next %}    
+                <li class="page-item">            
+                    <a class="page-link" href="?page={{ magarData.next_page_number }}">Next</a>
+                </li>
+            {% endif %}      
+       </ul>                   
+    </nav>          
+</div>
+{% endblock %}
+
+
+

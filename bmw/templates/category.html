@@ -1,0 +1,23 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+
+
+<div class="container-mt-5 mb-5">                
+    <div class="row">
+        <div class="col-md-8 mt-5 mb-5">
+            <h1><a href="">{{ catData.title }}</a></h1>
+            <p>{{ catData.content | safe }}</p>
+        </div>
+        <div class="col-md-4 mb-5 mb-5">
+            {% if catData.photo.url %}
+            <img src="{{ catData.photo.url }}" class="img-fluid" alt="Image Not Found">
+            {% endif %}
+        </div>
+    </div>
+</div>
+             
+
+
+{% endblock %}
+
+   

@@ -1,0 +1,55 @@
+{% load static %}
+<div class="container mt-5 mb-5"
+    <div id="wrapper">
+        <header class="tech-header header">
+            <div class="container-fluid">
+                <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                        <a class="navbar-brand" href="index.html"><img src="{% static 'images/version/tech-logo.png' %}" alt=""></a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Home</a>
+                            </li>
+                            <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
+                                <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
+                                    <li>
+                                        <div class="container bg-dark">
+                                            {% for indra in indraData %}
+                                            <a href="{% url 'indra' indra.slug %}">{{ indra.name }}
+                                            {% endfor %}
+                                        </div>
+                                    </li>
+                                </ul>                                                                  
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'magar' %}">News List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'magar_api' %}">Magar API</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <form action="{% url 'magar' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" required name="search">
+                                </div>
+                                <div class="col-md-2" style="padding.left:0;">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div><!-- end container-fluid -->
+        </header><!-- end market-header -->
+    </div>

@@ -1,0 +1,52 @@
+{% extends 'layouts/main.html' %}
+{% block content %}
+
+
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                {% for thapa in thapaData %}
+                    <div class="col-md-12>                        
+                        <div class="card">
+                            {% if thapa.photo %}
+                            <img src="{{ thapa.photo.url }}" class="img-fluid" alt="...">
+                            {% endif %} 
+                            <div class="card-body">
+                                <h5 class="card-title">{{ thapa.title }}</h5>                             
+                                <p class="card-text">{{ thapa.summary | safe }}</p>   
+                                <p class="card-text">{{ thapa.content | safe }}</p>                              
+                            </div>   
+                        </div>                                                         
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for indra in indraData %}
+                    <div class="col-md-12 mt-5 mb-3">
+                        <h1><a href="">{{ indra.name }}</a></h1>
+                        <div class="row">
+                            {% for magar in indra.magar_set.all %}
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        {% if magar.photo %}
+                                        <img src="{{ magar.photo.url }}" class="img-fluid" alt="...">
+                                        {% endif %}
+                                        <div class="card-body">
+                                        <h5 class="card-title">{{ magar.title }}</h5>
+                                        <p class="card-text">{{ magar.summary | safe }}</p>
+                                        <a href="{% url 'magar_details' magar.slug %}" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+                
+
+
+{% endblock %}
+
+   
